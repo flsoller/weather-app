@@ -2,11 +2,10 @@
 
 Stack:
 
-- Frontend: ReactJS (https://reactjs.org)
+- ReactJS (https://reactjs.org)
 - Styled-Components (https://styled-components.com)
 
-<img src="./mockups/Desktop.jpg" width='500' height='400'>
-<img src="./mockups/Mobile.jpg" width='200' height='400'>
+<img src="./mockups/mockup.png" width='600' height='400'>
 
 ## Project targets:
 
