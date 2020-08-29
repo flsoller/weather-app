@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
 
-const AppContainer = styled.div`
+const StyledAppContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -11,5 +12,9 @@ const AppContainer = styled.div`
     height: 70vh;
   }
 `;
+
+function AppContainer({ children }) {
+  return <StyledAppContainer>{children}</StyledAppContainer>;
+}
 
 export default AppContainer;

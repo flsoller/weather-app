@@ -1,12 +1,14 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import bgImage from '../assets/app-bg-clouds.jpg';
 
-const DataContainer = styled.div`
+const StyledDataContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: url(${bgImage});
   background-size: cover;
+  background-position: top;
   width: 70%;
   height: 75%;
   justify-content: space-around;
@@ -21,9 +23,13 @@ const DataContainer = styled.div`
     width: 100%;
   }
 
-  @media (max-height: 475px) {
+  @media (max-height: 425px) {
     background-position: center;
   }
 `;
+
+function DataContainer({ children }) {
+  return <StyledDataContainer>{children}</StyledDataContainer>;
+}
 
 export default DataContainer;
