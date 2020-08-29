@@ -12,8 +12,10 @@ function App() {
     <AppContainer>
       <DataContainer>
         <SearchBox></SearchBox>
-        <ActiveLocation></ActiveLocation>
-        <CurrentCondition></CurrentCondition>
+        <div>
+          <ActiveLocation></ActiveLocation>
+          <CurrentCondition></CurrentCondition>
+        </div>
         <Forecast></Forecast>
       </DataContainer>
     </AppContainer>
