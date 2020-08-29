@@ -1,7 +1,14 @@
 import React from 'react';
 
+import AppContainer from './styles/AppContainer';
+import DataContainer from './styles/DataContainer';
+
 function App() {
-  return <h1>Hello from App.js</h1>;
+  return (
+    <AppContainer>
+      <DataContainer></DataContainer>
+    </AppContainer>
+  );
 }
 
 export default App;
