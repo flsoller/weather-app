@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 import { SearchIcon } from '../styles/Icons';
 
+// Styled Components
 const StyledInput = styled.input`
   text-align: center;
   outline: none;
@@ -21,16 +22,34 @@ const StyledIconContainer = styled.div`
 `;
 
 function SearchBox() {
+  // React useState hook for input state
+  const [Input, setInput] = useState('');
+
+  // Text input change handler
+  const handleChange = (e) => {
+    setInput(...Input, e.target.value);
+  };
+
+  // Handling form submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch(Input)
+      .then((response) => response.json())
+      .then((json) => console.log(json))
+      .catch((err) => alert(err));
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <StyledIconContainer>
           <SearchIcon />
         </StyledIconContainer>
         <StyledInput
+          onChange={handleChange}
           type="text"
-          id="location"
-          name="location"
+          id="input"
+          name="input"
           placeholder="Enter city ..."
           autoComplete="off"
         ></StyledInput>
