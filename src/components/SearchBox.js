@@ -27,16 +27,22 @@ function SearchBox() {
 
   // Text input change handler
   const handleChange = (e) => {
-    setInput(...Input, e.target.value);
+    setInput(e.target.value);
   };
 
   // Handling form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(Input)
+
+    // API fetch call.
+    const API = '01da4e3c10ff2e0357130a2f1c9772a9';
+
+    fetch(
+      `http://api.openweathermap.org/data/2.5/weather?q=${Input}&APPID=${API}`
+    )
       .then((response) => response.json())
-      .then((json) => console.log(json))
-      .catch((err) => alert(err));
+      .then((response) => console.log(response))
+      .catch((err) => console.log(err));
   };
 
   return (
