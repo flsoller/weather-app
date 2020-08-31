@@ -16,7 +16,7 @@ Stack:
 Todo:
 
 - [x] Wireframe / Layout
-- [ ] Define components
+- [x] Define components
 - [ ] Build + style components with dummy data
-- [ ] Implement weather API calls with promises
+- [x] Implement weather API calls with fetch API
 - [ ] Refactor API calls to Async / Await
