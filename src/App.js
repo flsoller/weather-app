@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import AppContainer from './components/AppContainer';
 import DataContainer from './components/DataContainer';
@@ -8,13 +8,26 @@ import CurrentCondition from './components/CurrentCondition';
 import Forecast from './components/Forecast';
 
 function App() {
+  const [Weather, setWeather] = useState({ city: '', condition: '', temp: '' });
+
+  const handleWeatherState = (input) => {
+    console.log(input);
+    setWeather({
+      city: input.name,
+      condition: input.weather[0].main,
+      temp: input.main.temp,
+    });
+  };
   return (
     <AppContainer>
       <DataContainer>
-        <SearchBox></SearchBox>
+        <SearchBox handleWeatherState={handleWeatherState}></SearchBox>
         <div>
-          <ActiveLocation></ActiveLocation>
-          <CurrentCondition></CurrentCondition>
+          <ActiveLocation location={Weather.city}></ActiveLocation>
+          <CurrentCondition
+            condition={Weather.condition}
+            temp={Weather.temp}
+          ></CurrentCondition>
         </div>
         <Forecast></Forecast>
       </DataContainer>

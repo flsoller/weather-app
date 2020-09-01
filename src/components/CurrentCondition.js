@@ -1,10 +1,17 @@
 import React from 'react';
 
-function CurrentCondition() {
+import styled from 'styled-components';
+
+const StyledH2 = styled.h2`
+  text-align: center;
+  margin-top: 5px;
+`;
+
+function CurrentCondition({ condition, temp }) {
   return (
-    <div>
-      <h1>Hi from current condition</h1>
-    </div>
+    <StyledH2>
+      {condition} {temp}
+    </StyledH2>
   );
 }
 

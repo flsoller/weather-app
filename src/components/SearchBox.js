@@ -21,7 +21,7 @@ const StyledIconContainer = styled.div`
   z-index: 1;
 `;
 
-function SearchBox() {
+function SearchBox({ handleWeatherState }) {
   // React useState hook for input state
   const [Input, setInput] = useState('');
 
@@ -41,8 +41,9 @@ function SearchBox() {
       `http://api.openweathermap.org/data/2.5/weather?q=${Input}&APPID=${API}`
     )
       .then((response) => response.json())
-      .then((response) => console.log(response))
+      .then((response) => handleWeatherState(response))
       .catch((err) => console.log(err));
+    setInput('');
   };
 
   return (
@@ -58,6 +59,7 @@ function SearchBox() {
           name="input"
           placeholder="Enter city ..."
           autoComplete="off"
+          value={Input}
         ></StyledInput>
       </form>
     </div>
