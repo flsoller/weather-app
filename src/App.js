@@ -5,7 +5,7 @@ import DataContainer from './components/DataContainer';
 import SearchBox from './components/SearchBox';
 import ActiveLocation from './components/ActiveLocation';
 import CurrentCondition from './components/CurrentCondition';
-import Forecast from './components/Forecast';
+import ForecastContainer from './components/Forecast/ForecastContainer';
 
 function App() {
   const [Weather, setWeather] = useState({ city: '', condition: '', temp: '' });
@@ -29,7 +29,7 @@ function App() {
             temp={Weather.temp}
           ></CurrentCondition>
         </div>
-        <Forecast></Forecast>
+        <ForecastContainer></ForecastContainer>
       </DataContainer>
     </AppContainer>
   );
