@@ -10,10 +10,10 @@ import ForecastContainer from './components/Forecast/ForecastContainer';
 const celsiusConversion = (value) => value - 273.15;
 
 function App() {
-  const [Weather, setWeather] = useState({ city: '', condition: '', temp: '' });
-  //const [forecast, setForecast] = useState();
+  const [weather, setWeather] = useState({ city: '', condition: '', temp: '' });
+  const [forecast, setForecast] = useState();
 
-  // set state to API response for selected values.
+  // Set current weather state to API response.
   const handleWeatherState = (input) => {
     console.log(input);
     setWeather({
@@ -24,15 +24,23 @@ function App() {
     });
   };
 
+  // Set foecast weather state to API response.
+  const handleForecastState = (input) => {
+    console.log(input);
+  };
+
   return (
     <AppContainer>
       <DataContainer>
-        <SearchBox handleWeatherState={handleWeatherState}></SearchBox>
+        <SearchBox
+          handleWeatherState={handleWeatherState}
+          handleForecastState={handleForecastState}
+        ></SearchBox>
         <div>
-          <ActiveLocation location={Weather.city}></ActiveLocation>
+          <ActiveLocation location={weather.city}></ActiveLocation>
           <CurrentCondition
-            condition={Weather.condition}
-            temp={Weather.temp}
+            condition={weather.condition}
+            temp={weather.temp}
           ></CurrentCondition>
         </div>
         <ForecastContainer></ForecastContainer>

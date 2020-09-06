@@ -20,3 +20,11 @@ Todo:
 - [ ] Build + style components with dummy data
 - [x] Implement weather API calls with fetch API
 - [ ] Refactor API calls to Async / Await
+
+## Remarks:
+
+The SearchBox component is responsible for making the API calls and contains a nested Fetch method that depends on the previous promise. This is generally bad practice as it is similar to callbacks. It was only used to get around a limitation of the API service in order to get forecast data.
+
+Todo:
+
+- [ ] Find better solution to above problem.

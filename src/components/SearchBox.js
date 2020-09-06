@@ -21,7 +21,7 @@ const StyledIconContainer = styled.div`
   z-index: 1;
 `;
 
-function SearchBox({ handleWeatherState }) {
+function SearchBox({ handleWeatherState, handleForecastState }) {
   // React useState hook for input state
   const [Input, setInput] = useState('');
 
@@ -36,13 +36,28 @@ function SearchBox({ handleWeatherState }) {
 
     // API fetch call.
     const API = '01da4e3c10ff2e0357130a2f1c9772a9';
+    let lat;
+    let lon;
 
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${Input}&APPID=${API}`
     )
       .then((response) => response.json())
-      .then((response) => handleWeatherState(response))
-      .catch((err) => console.log(err));
+      .then((response) => {
+        response.cod === 200
+          ? handleWeatherState(response)
+          : alert(response.message);
+        lat = response.coord.lat;
+        lon = response.coord.lon;
+        fetch(
+          `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${API}`
+        )
+          .then((response) => response.json())
+          .then((response) => console.log(response))
+          .catch((err) => alert(err));
+      })
+      .catch((err) => alert(err));
+
     setInput('');
   };
 
