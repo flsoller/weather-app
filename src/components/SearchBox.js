@@ -53,7 +53,7 @@ function SearchBox({ handleWeatherState, handleForecastState }) {
           `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${API}`
         )
           .then((response) => response.json())
-          .then((response) => console.log(response))
+          .then((response) => handleForecastState(response))
           .catch((err) => alert(err));
       })
       .catch((err) => alert(err));

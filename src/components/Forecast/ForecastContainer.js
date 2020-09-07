@@ -5,15 +5,22 @@ import DayContainer from './DayContainer';
 
 const StyledForecastContainer = styled.div`
   display: flex;
+  justify-content: space-around;
+  width: 75%;
 `;
 
-function ForecastContainer() {
-  return (
-    <StyledForecastContainer>
-      <DayContainer></DayContainer>
-      <DayContainer></DayContainer>
-    </StyledForecastContainer>
-  );
+function ForecastContainer({ forecastDataArray }) {
+  const renderForecast = forecastDataArray.map((daily) => (
+    <DayContainer
+      maxTemp={daily[0]}
+      minTemp={daily[1]}
+      condition={daily[2]}
+      weekday={daily[3]}
+      key={Math.random()}
+    />
+  ));
+
+  return <StyledForecastContainer>{renderForecast}</StyledForecastContainer>;
 }
 
 export default ForecastContainer;

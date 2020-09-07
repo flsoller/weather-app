@@ -7,26 +7,57 @@ import ActiveLocation from './components/ActiveLocation';
 import CurrentCondition from './components/CurrentCondition';
 import ForecastContainer from './components/Forecast/ForecastContainer';
 
-const celsiusConversion = (value) => value - 273.15;
+export const celsiusConversion = (value) => value - 273.15;
 
 function App() {
   const [weather, setWeather] = useState({ city: '', condition: '', temp: '' });
-  const [forecast, setForecast] = useState();
+  const [forecast, setForecast] = useState([]);
 
   // Set current weather state to API response.
   const handleWeatherState = (input) => {
-    console.log(input);
     setWeather({
       city: input.name,
       condition: input.weather[0].main + ', ',
-      // Directly coverts API response from Kelvin to °C
+      // Directly converts API response from Kelvin to °C
       temp: celsiusConversion(input.main.temp).toFixed(0) + ' °C',
     });
   };
 
-  // Set foecast weather state to API response.
+  // Set forecast state to API response.
   const handleForecastState = (input) => {
     console.log(input);
+    setForecast([
+      [
+        input.daily[1].temp.max,
+        input.daily[1].temp.min,
+        input.daily[1].weather[0].main,
+        input.daily[1].dt,
+      ],
+      [
+        input.daily[2].temp.max,
+        input.daily[2].temp.min,
+        input.daily[2].weather[0].main,
+        input.daily[2].dt,
+      ],
+      [
+        input.daily[3].temp.max,
+        input.daily[3].temp.min,
+        input.daily[3].weather[0].main,
+        input.daily[3].dt,
+      ],
+      [
+        input.daily[4].temp.max,
+        input.daily[4].temp.min,
+        input.daily[4].weather[0].main,
+        input.daily[4].dt,
+      ],
+      [
+        input.daily[5].temp.max,
+        input.daily[5].temp.min,
+        input.daily[5].weather[0].main,
+        input.daily[5].dt,
+      ],
+    ]);
   };
 
   return (
@@ -43,7 +74,7 @@ function App() {
             temp={weather.temp}
           ></CurrentCondition>
         </div>
-        <ForecastContainer></ForecastContainer>
+        <ForecastContainer forecastDataArray={forecast}></ForecastContainer>
       </DataContainer>
     </AppContainer>
   );
