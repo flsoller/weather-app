@@ -7,6 +7,11 @@ const StyledForecastContainer = styled.div`
   display: flex;
   justify-content: space-around;
   width: 75%;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    width: 95%;
+  }
 `;
 
 function ForecastContainer({ forecastDataArray }) {

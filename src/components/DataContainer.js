@@ -16,7 +16,7 @@ const StyledDataContainer = styled.div`
   border-radius: 50px;
 
   @media (max-width: 500px) {
-    background-size: contain;
+    background-size: inherit;
     background-repeat: no-repeat;
     border-radius: 0px;
     height: 100%;

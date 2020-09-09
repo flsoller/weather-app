@@ -39,6 +39,7 @@ function SearchBox({ handleWeatherState, handleForecastState }) {
     let lat;
     let lon;
 
+    // First fetch call to get current condition.
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${Input}&APPID=${API}`
     )
@@ -49,6 +50,7 @@ function SearchBox({ handleWeatherState, handleForecastState }) {
           : alert(response.message);
         lat = response.coord.lat;
         lon = response.coord.lon;
+        // Extracted latitude and longitude, 2nd fetch call to get forecast data.
         fetch(
           `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${API}`
         )

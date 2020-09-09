@@ -8,9 +8,9 @@ const StyledAppContainer = styled.div`
   align-items: center;
   height: 100vh;
 
-  @media (max-width: 500px) {
+  /* @media (max-width: 500px) {
     height: 70vh;
-  }
+  } */
 `;
 
 function AppContainer({ children }) {

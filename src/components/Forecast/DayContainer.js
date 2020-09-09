@@ -15,21 +15,43 @@ const StyledDayContainer = styled.div`
   padding: 10px;
   min-width: 80px;
   font-size: 0.8rem;
+
+  @media (max-width: 500px) {
+    flex-direction: row;
+    justify-content: space-around;
+  }
 `;
 
 const StyledLine = styled.div`
-  border-left: 4px solid;
-  height: 45px;
-  color: white;
-  margin: 10px;
+  @media (min-width: 501px) {
+    border-left: 4px solid;
+    height: 45px;
+    color: white;
+    margin: 10px;
+  }
+
+  @media (max-width: 500px) {
+    border-top: 4px solid;
+    width: 50px;
+    color: white;
+    margin: 5px;
+  }
 `;
 
 const StyledIconContainer = styled.div`
   margin-bottom: 15px;
+
+  @media (max-width: 500px) {
+    margin-bottom: 0px;
+  }
 `;
 
 const StyledWeekdayContainer = styled.div`
   margin-top: 10px;
+
+  @media (max-width: 500px) {
+    margin-top: 0px;
+  }
 `;
 
 function DayContainer({ maxTemp, minTemp, condition, weekday }) {
