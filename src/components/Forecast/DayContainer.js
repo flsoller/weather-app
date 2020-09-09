@@ -37,16 +37,16 @@ function DayContainer({ maxTemp, minTemp, condition, weekday }) {
     let date = new Date(inputUNIX * 1000).getUTCDay();
 
     const weekdays = [
+      'Sunday',
       'Monday',
       'Tuesday',
       'Wednesday',
       'Thursday',
       'Friday',
       'Saturday',
-      'Sunday',
     ];
 
-    return weekdays[date - 1];
+    return weekdays[date];
   };
 
   return (
