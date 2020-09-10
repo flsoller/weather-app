@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { celsiusConversion } from '../../App';
 
-import { CloudIcon, RainIcon, SunIcon } from '../../styles/Icons';
+import { CloudIcon, RainIcon, SunIcon, SnowIcon } from '../../styles/Icons';
 
 const StyledDayContainer = styled.div`
   display: flex;
@@ -77,6 +77,7 @@ function DayContainer({ maxTemp, minTemp, condition, weekday }) {
         {condition === 'Clear' ? <SunIcon /> : null}
         {condition === 'Rain' ? <RainIcon /> : null}
         {condition === 'Clouds' ? <CloudIcon /> : null}
+        {condition === 'Snow' ? <SnowIcon /> : null}
       </StyledIconContainer>
       <p>{celsiusConversion(maxTemp).toFixed(0)}</p>
       <StyledLine></StyledLine>
