@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import bgImage from '../assets/app-bg-clouds.jpg';
+import bgImage from '../assets/bg.jpg';
 
 const StyledDataContainer = styled.div`
   display: flex;
@@ -16,7 +16,6 @@ const StyledDataContainer = styled.div`
   border-radius: 50px;
 
   @media (max-width: 500px) {
-    background-size: inherit;
     background-repeat: no-repeat;
     border-radius: 0px;
     height: 100%;
