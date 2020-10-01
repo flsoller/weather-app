@@ -21,8 +21,11 @@ const StyledIconContainer = styled.div`
   z-index: 1;
 `;
 
+// API detail. Would be in environment file if implemented with server. Just for demo.
+const API = '01da4e3c10ff2e0357130a2f1c9772a9';
+
 function SearchBox({ handleWeatherState, handleForecastState }) {
-  // React useState hook for input state
+  // state hook for input state
   const [Input, setInput] = useState('');
 
   // Text input change handler
@@ -30,35 +33,41 @@ function SearchBox({ handleWeatherState, handleForecastState }) {
     setInput(e.target.value);
   };
 
+  // Async function gets weather data for location.
+  async function getLocationWeather(url) {
+    let response = await fetch(url);
+    let weatherData = await response.json();
+
+    weatherData.cod === 200
+      ? handleWeatherState(weatherData)
+      : alert(weatherData.message);
+
+    return weatherData;
+  }
+
+  // Async function gets forecast data. Depends on data from getLocationWeather. Limitation of API.
+  async function getForecastData() {
+    let weatherData = await getLocationWeather(
+      `https://api.openweathermap.org/data/2.5/weather?q=${Input}&APPID=${API}`
+    );
+
+    // Extract data needed for fetching forecast data.
+    let testLat = weatherData.coord.lat;
+    let testLon = weatherData.coord.lon;
+
+    let response = await fetch(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${testLat}&lon=${testLon}&exclude=minutely,hourly&appid=${API}`
+    );
+    let forecastData = await response.json();
+
+    handleForecastState(forecastData);
+  }
+
   // Handling form submit
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // API fetch call.
-    const API = '01da4e3c10ff2e0357130a2f1c9772a9';
-    let lat;
-    let lon;
-
-    // First fetch call to get current condition.
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${Input}&APPID=${API}`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        response.cod === 200
-          ? handleWeatherState(response)
-          : alert(response.message);
-        lat = response.coord.lat;
-        lon = response.coord.lon;
-        // Extracted latitude and longitude, 2nd fetch call to get forecast data.
-        fetch(
-          `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${API}`
-        )
-          .then((response) => response.json())
-          .then((response) => handleForecastState(response))
-          .catch((err) => alert(err));
-      })
-      .catch((err) => alert(err));
+    getForecastData();
 
     setInput('');
   };
