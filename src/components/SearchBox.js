@@ -46,29 +46,31 @@ function SearchBox({ handleWeatherState, handleForecastState }) {
   }
 
   // Async function gets forecast data. Depends on data from getLocationWeather. Limitation of API.
-  async function getForecastData() {
+  async function getAllWeatherData() {
     let weatherData = await getLocationWeather(
       `https://api.openweathermap.org/data/2.5/weather?q=${Input}&APPID=${API}`
     );
 
-    // Extract data needed for fetching forecast data.
-    let testLat = weatherData.coord.lat;
-    let testLon = weatherData.coord.lon;
+    try {
+      // Extract data needed for fetching forecast data.
+      let testLat = weatherData.coord.lat;
+      let testLon = weatherData.coord.lon;
 
-    let response = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${testLat}&lon=${testLon}&exclude=minutely,hourly&appid=${API}`
-    );
-    let forecastData = await response.json();
+      let response = await fetch(
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${testLat}&lon=${testLon}&exclude=minutely,hourly&appid=${API}`
+      );
+      let forecastData = await response.json();
 
-    handleForecastState(forecastData);
+      handleForecastState(forecastData);
+    } catch {
+      alert('Getting forecast failed.');
+    }
   }
 
   // Handling form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    getForecastData();
-
+    getAllWeatherData();
     setInput('');
   };
 
