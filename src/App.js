@@ -25,39 +25,16 @@ function App() {
 
   // Set forecast state to API response.
   const handleForecastState = (input) => {
-    console.log(input);
-    setForecast([
-      [
-        input.daily[1].temp.max,
-        input.daily[1].temp.min,
-        input.daily[1].weather[0].main,
-        input.daily[1].dt,
-      ],
-      [
-        input.daily[2].temp.max,
-        input.daily[2].temp.min,
-        input.daily[2].weather[0].main,
-        input.daily[2].dt,
-      ],
-      [
-        input.daily[3].temp.max,
-        input.daily[3].temp.min,
-        input.daily[3].weather[0].main,
-        input.daily[3].dt,
-      ],
-      [
-        input.daily[4].temp.max,
-        input.daily[4].temp.min,
-        input.daily[4].weather[0].main,
-        input.daily[4].dt,
-      ],
-      [
-        input.daily[5].temp.max,
-        input.daily[5].temp.min,
-        input.daily[5].weather[0].main,
-        input.daily[5].dt,
-      ],
-    ]);
+    setForecast(
+      input.daily.slice(0, 5).map((daily) => {
+        return [
+          daily.temp.min,
+          daily.temp.max,
+          daily.weather[0].main,
+          daily.dt,
+        ];
+      })
+    );
   };
 
   return (
