@@ -18,4 +18,4 @@ Todo:
 - [x] Define components
 - [x] Build + style components with dummy data
 - [x] Implement weather API calls with fetch API
-- [ ] Refactor API calls to Async / Await
+- [x] Refactor API calls to Async / Await
