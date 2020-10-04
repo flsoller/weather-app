@@ -7,6 +7,7 @@ const StyledAppContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   height: 100vh;
+  min-height: 550px;
 
   /* @media (max-width: 500px) {
     height: 70vh;

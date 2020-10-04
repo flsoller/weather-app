@@ -8,17 +8,25 @@ const StyledDayContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #c4c4c4;
-  opacity: 80%;
   margin: 5px;
-  color: black;
   padding: 10px;
   min-width: 80px;
   font-size: 0.8rem;
+  background: #e2e9f8;
+  border-radius: 15px;
+  box-shadow: 8px 8px 16px #91959f, -8px -8px 16px #ffffff;
+
+  @media (max-width: 650px) {
+    min-width: 60px;
+    font-size: 0.6rem;
+  }
 
   @media (max-width: 500px) {
     flex-direction: row;
     justify-content: space-around;
+    margin-bottom: 15px;
+    box-shadow: 8px -8px 16px #91959f, -8px 8px 16px #ffffff;
+    font-size: 1rem;
   }
 `;
 
@@ -26,14 +34,12 @@ const StyledLine = styled.div`
   @media (min-width: 501px) {
     border-left: 4px solid;
     height: 45px;
-    color: white;
     margin: 10px;
   }
 
   @media (max-width: 500px) {
     border-top: 4px solid;
     width: 50px;
-    color: white;
     margin: 5px;
   }
 `;
