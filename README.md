@@ -5,7 +5,7 @@ Stack:
 - ReactJS (https://reactjs.org)
 - Styled-Components (https://styled-components.com)
 
-<img src="./mockups/mockup.png" width='700' height='350'>
+<img src="./mockups/mockup.png" width="600px">
 
 ## Project targets:
 
