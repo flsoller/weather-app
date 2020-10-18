@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import styled from 'styled-components';
 import { SearchIcon } from '../styles/Icons';
@@ -26,12 +26,20 @@ const API = '01da4e3c10ff2e0357130a2f1c9772a9';
 
 function SearchBox({ handleWeatherState, handleForecastState }) {
   // state hook for input state
-  const [Input, setInput] = useState('');
+  const [input, setInput] = useState('');
 
   // Text input change handler
   const handleChange = (e) => {
     setInput(e.target.value);
   };
+
+  // useRef for input field.
+  const inputFocus = useRef(null);
+
+  // useEffect to trigger focus on input field after render.
+  useEffect(() => {
+    inputFocus.current.focus();
+  }, []);
 
   // Async function gets weather data for location.
   async function getLocationWeather(url) {
@@ -48,7 +56,7 @@ function SearchBox({ handleWeatherState, handleForecastState }) {
   // Async function gets forecast data. Depends on data from getLocationWeather. Limitation of API.
   async function getAllWeatherData() {
     let weatherData = await getLocationWeather(
-      `https://api.openweathermap.org/data/2.5/weather?q=${Input}&APPID=${API}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${input}&APPID=${API}`
     );
 
     try {
@@ -82,12 +90,13 @@ function SearchBox({ handleWeatherState, handleForecastState }) {
         </StyledIconContainer>
         <StyledInput
           onChange={handleChange}
+          ref={inputFocus}
           type="text"
           id="input"
           name="input"
           placeholder="Enter city ..."
           autoComplete="off"
-          value={Input}
+          value={input}
         ></StyledInput>
       </form>
     </div>
