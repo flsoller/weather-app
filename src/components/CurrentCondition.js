@@ -10,7 +10,11 @@ const StyledH2 = styled.h2`
 function CurrentCondition({ condition, temp }) {
   return (
     <StyledH2>
-      {condition} {temp}
+      {condition && temp ? (
+        <p>
+          {condition} {temp}
+        </p>
+      ) : null}
     </StyledH2>
   );
 }
